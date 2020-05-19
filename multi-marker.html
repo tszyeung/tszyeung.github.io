@@ -210,9 +210,9 @@ function update()
 			let lerpAmount = 0.1 * i;
 
 			scene.add(sceneGroupArray[i]);
-			sceneGroup.position.lerp(p, lerpAmount);
-			sceneGroup.quaternion.slerp(q, lerpAmount);
-			sceneGroup.scale.lerp(s, lerpAmount);
+			sceneGroupArray[i].position.lerp(p, lerpAmount);
+			sceneGroupArray[i].quaternion.slerp(q, lerpAmount);
+			sceneGroupArray[i].scale.lerp(s, lerpAmount);
 
 			// break;
 		}
