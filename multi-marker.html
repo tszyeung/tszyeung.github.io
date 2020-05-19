@@ -30,9 +30,11 @@ var arToolkitSource, arToolkitContext;
 
 var markerNames, markerArray, currentMarkerName;
 
-var sceneGroup;
+var sceneGroupArray;
 
-var globe;
+var sceneGroup1, sceneGroup2, sceneGroup3, sceneGroup4;
+
+var globe1, globe2, globe3, globe4;
 
 initialize();
 animate();
@@ -132,18 +134,47 @@ function initialize()
 	// setup scene
 	////////////////////////////////////////////////////////////
 
-	sceneGroup = new THREE.Group();
-
 	let loader = new THREE.TextureLoader();
 
+	sceneGroup1 = new THREE.Group();
 	let geometry1 = new THREE.SphereGeometry(1, 32,32);
-	let texture = loader.load( 'images/earth-sphere.jpg' );
-	let material1 = new THREE.MeshLambertMaterial( { map: texture, opacity: 0.75 } );
-	globe = new THREE.Mesh( geometry1, material1 );
-	globe.position.y = 1;
-	sceneGroup.add(globe);
+	let texture1 = loader.load( 'images/earth-sphere.jpg' );
+	let material1 = new THREE.MeshLambertMaterial( { map: texture1, opacity: 0.75 } );
+	globe1 = new THREE.Mesh( geometry1, material1 );
+	globe1.position.y = 1;
+	sceneGroup1.add(globe1);
 
-	markerArray[0].children[0].add( sceneGroup );
+	sceneGroup2 = new THREE.Group();
+	let geometry2 = new THREE.SphereGeometry(1, 32,32);
+	let texture2 = loader.load( 'images/sand.jpg' );
+	let material2 = new THREE.MeshLambertMaterial( { map: texture2, opacity: 0.75 } );
+	globe2 = new THREE.Mesh( geometry2, material2 );
+	globe2.position.y = 1;
+	sceneGroup2.add(globe2);
+
+	sceneGroup3 = new THREE.Group();
+	let geometry3 = new THREE.SphereGeometry(1, 32,32);
+	let texture3 = loader.load( 'images/noise.jpg' );
+	let material3 = new THREE.MeshLambertMaterial( { map: texture3, opacity: 0.75 } );
+	globe3 = new THREE.Mesh( geometry3, material3 );
+	globe3.position.y = 1;
+	sceneGroup3.add(globe3);
+
+	sceneGroup4 = new THREE.Group();
+	let geometry4 = new THREE.SphereGeometry(1, 32,32);
+	let texture4 = loader.load( 'images/water.jpg' );
+	let material4 = new THREE.MeshLambertMaterial( { map: texture4, opacity: 0.75 } );
+	globe4 = new THREE.Mesh( geometry4, material4 );
+	globe4.position.y = 1;
+	sceneGroup4.add(globe4);
+
+	sceneGroupArray = [sceneGroup1, sceneGroup2 ,sceneGroup3 ,sceneGroup4];
+
+	//default
+	markerArray[0].children[0].add( sceneGroup1 );
+	markerArray[1].children[0].add( sceneGroup2 );
+	markerArray[2].children[0].add( sceneGroup3 );
+	markerArray[3].children[0].add( sceneGroup4 );
 	currentMarkerName = markerNames[0];
 
 	let pointLight = new THREE.PointLight( 0xffffff, 1, 50 );
@@ -163,7 +194,7 @@ function update()
 		if ( markerArray[i].visible )
 		{
 			anyMarkerVisible = true;
-			markerArray[i].children[0].add( sceneGroup );
+			markerArray[i].children[0].add( sceneGroupArray[i] );
 			if ( currentMarkerName != markerNames[i] )
 			{
 				currentMarkerName = markerNames[i];
@@ -175,12 +206,12 @@ function update()
 			let s = markerArray[i].children[0].getWorldScale();
 			let lerpAmount = 0.1 * i;
 
-			scene.add(sceneGroup);
+			scene.add(sceneGroupArray[i]);
 			sceneGroup.position.lerp(p, lerpAmount);
 			sceneGroup.quaternion.slerp(q, lerpAmount);
 			sceneGroup.scale.lerp(s, lerpAmount);
 
-			break;
+			// break;
 		}
 	}
 
