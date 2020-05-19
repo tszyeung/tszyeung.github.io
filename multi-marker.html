@@ -112,7 +112,7 @@ function initialize()
 	// setup markerRoots
 	////////////////////////////////////////////////////////////
 
-	markerNames = ["luckyday50", "luckyshot50", "wakeup50", "yeahbuoy50"];
+	markerNames = ["luckyshot50", "wakeup50", "yeahbuoy50", "luckyday50"];
 
 	markerArray = [];
 
@@ -207,7 +207,7 @@ function update()
 			let p = markerArray[i].children[0].getWorldPosition();
 			let q = markerArray[i].children[0].getWorldQuaternion();
 			let s = markerArray[i].children[0].getWorldScale();
-			let lerpAmount = 0.1 * i;
+			let lerpAmount = 0.5;
 
 			scene.add(sceneGroupArray[i]);
 			sceneGroupArray[i].position.lerp(p, lerpAmount);
