@@ -52,7 +52,7 @@
 
 <body style='margin : 0px; overflow: hidden;'>
   <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-  <div id="player" style='display : none;'></div>
+  <div id="player"></div>
 
   <script>
     var isYoutubeReady = false;
@@ -98,12 +98,12 @@
     }
 
     function playVideo(){
-      document.querySelector("#player").style.cssText = 'display : block;';
+      // document.querySelector("#player").style.cssText = 'display : block;';
       player.playVideo();
     }
 
     function stopVideo() {
-      document.querySelector("#player").style.cssText = 'display : none;';
+      // document.querySelector("#player").style.cssText = 'display : none;';
       player.stopVideo();
     }
   </script>
