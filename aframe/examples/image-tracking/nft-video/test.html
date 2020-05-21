@@ -11,6 +11,7 @@
 
                 marker.addEventListener('markerFound', function () {
                     this.vid.play();
+                    document.querySelector("#player").style.cssText = 'z-index : 1 ; position : absolute;';
                     playVideo();
                 }.bind(this));
 
@@ -99,8 +100,8 @@
     var player;
     function onYouTubeIframeAPIReady() {
       player = new YT.Player('player', {
-        // height: '390',
-        width: '100%',
+        height: '240',
+        width: '320',
         videoId: 'M7lc1UVf-VE',
         playerVars: {
           // 'autoplay': 1,
