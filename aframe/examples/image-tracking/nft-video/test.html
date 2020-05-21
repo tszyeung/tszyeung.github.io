@@ -11,11 +11,13 @@
 
                 marker.addEventListener('markerFound', function () {
                     this.vid.play();
+                    playVideo();
                 }.bind(this));
 
             		marker.addEventListener('markerLost', function() {
             			this.vid.pause();
             			this.vid.currentTime = 0;
+                  stopVideo();
             		}.bind(this));
 
                 this.vid.addEventListener('click', function () {
@@ -53,6 +55,7 @@
   <div id="player" style='display : none;'></div>
 
   <script>
+    var isYoutubeReady = false;
     // 2. This code loads the IFrame Player API code asynchronously.
     var tag = document.createElement('script');
 
@@ -78,8 +81,9 @@
 
     // 4. The API will call this function when the video player is ready.
     function onPlayerReady(event) {
+      isYoutubeReady = true;
       event.target.mute();
-      event.target.playVideo();
+      // event.target.playVideo();
     }
 
     // 5. The API calls this function when the player's state changes.
@@ -92,7 +96,14 @@
       //   done = true;
       // }
     }
+
+    function playVideo(){
+      document.querySelector("#player").style.cssText = 'display : block;';
+      player.playVideo();
+    }
+
     function stopVideo() {
+      document.querySelector("#player").style.cssText = 'display : none;';
       player.stopVideo();
     }
   </script>
