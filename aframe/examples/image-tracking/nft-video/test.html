@@ -11,7 +11,6 @@
 
                 marker.addEventListener('markerFound', function () {
                     this.vid.play();
-                    document.querySelector("#player").style.cssText = 'z-index : 1 ; position : absolute;';
                     playVideo();
                 }.bind(this));
 
@@ -84,7 +83,7 @@
 	</a-scene>
 
   <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-  <div id="player" style = "z-index : 1 ; position : absolute;" ></div>
+  <div id="player" style = "z-index : 1 ; position : absolute; left:0; top:0; display: none;" ></div>
 
   <script>
     var isYoutubeReady = false;
@@ -133,11 +132,13 @@
 
     function playVideo(){
       // document.querySelector("#player").style.cssText = 'display : block;';
+      document.querySelector("#player").style.cssText = 'z-index : 1 ; position : absolute; left:0; top:0; display: block;';
       player.playVideo();
     }
 
     function stopVideo() {
       // document.querySelector("#player").style.cssText = 'display : none;';
+      document.querySelector("#player").style.cssText = 'z-index : 1 ; position : absolute; left:0; top:0; display: none;';
       player.stopVideo();
     }
   </script>
