@@ -2,6 +2,7 @@
 
 <script src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js'></script>
 <script>
+  /*
   var isYoutubeReady = false;
   // 2. This code loads the IFrame Player API code asynchronously.
   var tag = document.createElement('script');
@@ -57,7 +58,7 @@
     document.querySelector("#player").style.cssText = 'z-index : 1 ; position : absolute; left:0; top:0; display: none;';
     player.stopVideo();
   }
-
+*/
     window.onload = function() {
         AFRAME.registerComponent('videohandler', {
             init: function () {
@@ -67,13 +68,13 @@
 
                 marker.addEventListener('markerFound', function () {
                     this.vid.play();
-                    playVideo();
+                    // playVideo();
                 }.bind(this));
 
             		marker.addEventListener('markerLost', function() {
             			this.vid.pause();
             			this.vid.currentTime = 0;
-                  stopVideo();
+                  // stopVideo();
             		}.bind(this));
             }
         });
